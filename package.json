@@ -1,0 +1,18 @@
+{
+  "name": "oaut-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "´server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "node-oauth2-server": "^2.4.0"
+  }
+}
