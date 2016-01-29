@@ -1,9 +1,9 @@
 module.exports = function (db) {
-  var bcrypt = require("bcryptjs");
+  var
+    bcrypt = require("bcryptjs"),
+    sequelize = db.Sequelize;
 
-  var sequelize = db.Sequelize;
-
-  var User = db.sequelize.define('user', {
+  var User = db.sequelize.define('Users', {
     email: { type: sequelize.STRING, unique: true, allowNull: false },
     hashed_password: { type: sequelize.STRING, allowNull: false },
     password_reset_token: { type: sequelize.STRING, unique: true },

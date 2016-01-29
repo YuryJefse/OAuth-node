@@ -9,6 +9,7 @@ var
 var app = express();
 
 var User = models.User;
+var oauth = models.oauth;
 
 //User.register({ email: 'yury@gmail.com', password: '123456' },
 //  function (err, success) {
