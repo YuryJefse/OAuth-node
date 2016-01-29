@@ -19,6 +19,11 @@ function authenticate(email, password, callback) {
 }
 
 module.exports.authenticate = authenticate;
+
 module.exports.getUser = function (email, password, callback) {
   //eh necessario chamar a func authenticate para validar o retorno
+};
+
+module.exports.register = function (user, callback) {
+
 };
