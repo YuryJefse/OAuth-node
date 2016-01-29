@@ -1,29 +1,63 @@
-var bcrypt = require("bcryptjs");
+module.exports = function (db) {
+  var bcrypt = require("bcryptjs");
 
-//var OAuthUsersSchema = {
-//  email: { type: String, unique: true, required: true },
-//  hashed_password: { type: String, required: true },
-//  password_reset_token: { type: String, unique: true },
-//  reset_token_expires: Date,
-//  firstname: String,
-//  lastname: String
-//}
+  var sequelize = db.Sequelize;
 
-function hashPassword(password) {
-  var salt = bcrypt.genSaltSync(10);
-  return bcrypt.hashSync(password, salt);
-}
+  var User = db.sequelize.define('user', {
+    email: { type: sequelize.STRING, unique: true, allowNull: false },
+    hashed_password: { type: sequelize.STRING, allowNull: false },
+    password_reset_token: { type: sequelize.STRING, unique: true },
+    reset_token_expires: sequelize.DATE,
+    firstname: sequelize.STRING,
+    lastname: sequelize.STRING
+  });
 
-function authenticate(email, password, callback) {
+  db.sequelize.sync();
 
-}
+  function hashPassword(password) {
+    var salt = bcrypt.genSaltSync(10);
+    return bcrypt.hashSync(password, salt);
+  }
 
-module.exports.authenticate = authenticate;
+  function authenticate(email, password, callback) {
+    User.find({ where: {email: email }})
+      .then(function (user) {
+        if (!user) {
+          throw new Error('não foi encontrado');
+        }
 
-module.exports.getUser = function (email, password, callback) {
-  //eh necessario chamar a func authenticate para validar o retorno
-};
+        if (!bcrypt.compareSync(password, user.hashed_password)) {
+          throw new Error('senha inválida');
+        }
 
-module.exports.register = function (user, callback) {
+        callback(null, user);
+      })
+      .catch(function (err) {
+        console.log(err);
+        callback(err, null);
+      });
+  }
 
+  return{
+    authenticate: authenticate,
+
+    getUser: function (email, password, callback) {
+
+      authenticate(email, password, callback);
+    },
+
+    register: function (user, callback) {
+      user.hashed_password = hashPassword(user.password);
+      delete user.password;
+
+      User.create(user)
+        .then(function (u) {
+          console.log('success');
+          callback(null, u);
+        })
+        .catch(function (err) {
+          console.log('error');
+        });
+    }
+  };
 };

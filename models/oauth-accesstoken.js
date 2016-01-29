@@ -1,5 +1,3 @@
-var request = require('request');
-
 //var OAuthAccessTokensSchema = {
 //  accessToken: { type: String, required: true, unique: true },
 //  clientId: String,
@@ -7,10 +5,16 @@ var request = require('request');
 //  expires: Date
 //};
 
-module.exports.getAccessToken = function(bearerToken, callback) {
-  //bearerToken eh o accessToken
-};
+module.exports = function (db) {
 
-module.exports.saveAccessToken = function(token, clientId, expires, userId, callback) {
+  return {
 
+    getAccessToken: function(bearerToken, callback) {
+      //bearerToken eh o accessToken
+    },
+
+    saveAccessToken: function(token, clientId, expires, userId, callback) {
+
+    }
+  };
 };

@@ -1,3 +1,6 @@
 {
-  "urlDb": "http://localhost:5984/oauthTest"
+  "dev": {
+    "dialect": "sqlite",
+    "storage": "./db.dev.sqlite"
+  }
 }

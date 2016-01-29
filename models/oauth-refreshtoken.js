@@ -1,5 +1,3 @@
-var request = require('request');
-
 //var OAuthRefreshTokensSchema = {
 //  refreshToken: { type: String, required: true, unique: true },
 //  clientId: String,
@@ -7,13 +5,19 @@ var request = require('request');
 //  expires: Date
 //};
 
-module.exports.saveRefreshToken = function(token, clientId, expires, userId, callback) {
+module.exports= function (db) {
 
-};
+  return {
 
-module.exports.getRefreshToken = function(refreshToken, callback) {
-  //Devido a uma falha do oauth-server, eh necessario criar o atributo
-  //user e setar o valor igual ao userId
-  //
-  //ex.: token.user = token.userId;
+    saveRefreshToken: function(token, clientId, expires, userId, callback) {
+
+    },
+
+    getRefreshToken: function(refreshToken, callback) {
+      //Devido a uma falha do oauth-server, eh necessario criar o atributo
+      //user e setar o valor igual ao userId
+      //
+      //ex.: token.user = token.userId;
+    }
+  };
 };

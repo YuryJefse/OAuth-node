@@ -4,10 +4,15 @@
 //  redirectUri: String
 //}
 
-module.exports.getClient = function (clientId, clientSecret, callback) {
+module.exports = function (db) {
+  return {
 
-};
+    getClient: function (clientId, clientSecret, callback) {
 
-module.exports.grantTypeAllowed = function (clientId, grantType, callback) {
+    },
 
+    grantTypeAllowed: function (clientId, grantType, callback) {
+
+    }
+  };
 };
