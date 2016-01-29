@@ -39,6 +39,7 @@ module.exports = function (db) {
   }
 
   return{
+    table: User,
     authenticate: authenticate,
 
     getUser: function (email, password, callback) {
